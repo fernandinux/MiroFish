@@ -1,10 +1,15 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-vue'
-
 export default defineConfig({
   plugins: [vue()],
   server: {
-    host: true,        // Permite conexiones desde cualquier host
-    allowedHosts: 'all' // Alternativa moderna (Vite 4+)
+    port: 3000,
+    open: true,
+    allowedHosts: ['mirofish-fewg.onrender.com'], // 👈 Agrega esta línea
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 })
